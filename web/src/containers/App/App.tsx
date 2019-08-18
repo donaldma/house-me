@@ -2,13 +2,18 @@ import './App.scss'
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Nav from '../../components/Nav/Nav'
+import SearchPage from '../../containers/SearchPage/SearchPage'
 
 class App extends React.Component<{}, {}> {
 
   showPrototype=()=> {
     return(
-      <div><p>prototype</p></div>
+      <SearchPage/>
     )
+  }
+
+  showListings=()=> {
+    return(<div><p>listings</p></div>)
   }
 
   showHow=()=>{
@@ -27,13 +32,11 @@ class App extends React.Component<{}, {}> {
     return (
       <Router>
           <Nav
-            
           />
-          <div className='app container'>
+          <div className='app'>
             <Switch>
               <Route exact path='/' component={this.showPrototype}/>
-              {/* <Route path='/listings' component={this.showPrototype}/>
-              <Route path='/listings:id' component={this.showPrototype}/> */}
+              <Route path='/listings' component={this.showListings}/>
               <Route path='/how' component={this.showHow}/>
               <Route path='/about' component={this.showAbout}/>
             </Switch>

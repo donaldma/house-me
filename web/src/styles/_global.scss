@@ -1,7 +1,9 @@
 @import '../../styles/colors';
 
+$nav-height: 60px;
+
 body {
-  font-family: 'Roboto','Open sans', sans-serif;
+  font-family: 'Roboto', 'Open sans', sans-serif;
   color: $dark;
 }
 
@@ -12,13 +14,113 @@ h2 {
   font-size: 20px;
 }
 h3 {
-  font-size: 18;
+  font-size: 18px;
   color: $grey;
 }
 h4 {
-  font-size: 16;
+  font-size: 16px;
   color: $grey;
 }
+
+.banner-title {
+  position: relative;
+  font-size: 40px;
+  line-height: 56px;
+  font-weight: 600;
+  letter-spacing: -0.35px;
+  color: rgb(48, 48, 48);
+  margin: 0px;
+  text-decoration: none;
+}
+// .banner-title:hover {
+//   color: inherit;
+// }
+// .banner-title:before {
+//   content: "";
+//   position: absolute;
+//   width: 100%;
+//   height: 2px;
+//   bottom: 0;
+//   left: 0;
+//   background-color: $liv-orange;
+//   visibility: hidden;
+//   -webkit-transform: scaleX(0);
+//   transform: scaleX(0);
+//   -webkit-transition: all 0.3s ease-in-out 0s;
+//   transition: all 0.3s ease-in-out 0s;
+// }.banner-title:hover:before {
+//   visibility: visible;
+//   -webkit-transform: scaleX(1);
+//   transform: scaleX(1);
+// }
+.banner-subtitle {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.highlight-link {
+  line-height: 30px;
+  position: relative;
+  text-decoration: none;
+  color: $liv-orange !important;
+}
+.highlight-link:hover {
+  color: inherit;
+}
+.highlight-link:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: $liv-orange;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.1s ease-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+.highlight-link:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+.orange-text {
+  color: $liv-orange;
+  font-weight: bold;
+}
+
+.blue-text {
+  color: $light-blue;
+}
+
+.details-text {
+  font-style: italic;
+  padding-top: 10px;
+  font-size: 14px !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+  .selectionButton {
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 0px;
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    padding: 7px 15px;
+    transition: opacity 0.2s ease-in-out 0s;
+    background-color: rgb(74, 144, 226);
+    outline: none;
+    border: none;
+  }
+
+// etc.
 
 ul {
   list-style: none;

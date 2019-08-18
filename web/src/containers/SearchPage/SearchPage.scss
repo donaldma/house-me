@@ -1,0 +1,49 @@
+@import '../../styles/colors';
+@import '../../styles/global';
+
+$skyline: '/img/Skyline.png';
+
+#searchPage {
+  position: fixed;
+  height: calc(100vh - $nav-height);
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-image: url($skyline);
+  background-position: bottom;
+  #title {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 160px;
+    text-align: center;
+    #search-btn {
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      outline: none;
+      border: solid $light-gray 1px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      vertical-align: middle;
+      #search-btn-text {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle;
+        #searchIcon {
+          display: inline;
+          padding-bottom: 5px;
+          padding-right: 15px;
+        }
+        #nextIcon {
+            height: 19px;
+        }
+      }
+    }
+    #search-btn:active {
+      box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    }
+  }
+}

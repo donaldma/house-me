@@ -1,0 +1,8 @@
+@import '../../styles/colors';
+@import '../../styles/global';
+
+#aboutButton{
+    position: fixed;
+    top: calc(100vh - 60px);
+    left: calc(100vw - 170px);
+}

@@ -22,8 +22,12 @@ interface INavConfig {
 
 const navConfig: INavConfig[] = [
   {
-    title: 'Prototype',
+    title: 'Prototype Start',
     url: '/'
+  },
+  {
+    title: 'Search Results',
+    url: '/listings'
   },
   {
     title: 'How it works',
