@@ -3,6 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Nav from '../../components/Nav/Nav'
 import SearchPage from '../../containers/SearchPage/SearchPage'
+import Listings from '../../containers/Listings/Listings'
 
 class App extends React.Component<{}, {}> {
 
@@ -13,7 +14,7 @@ class App extends React.Component<{}, {}> {
   }
 
   showListings=()=> {
-    return(<div><p>listings</p></div>)
+    return(<Listings/>)
   }
 
   showHow=()=>{
