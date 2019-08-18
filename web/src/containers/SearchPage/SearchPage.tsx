@@ -14,9 +14,9 @@ class SearchPage extends React.Component<{}, {}> {
           <h1 className='banner-title'>Rental Automated</h1>
           <h3 className='banner-subtitle'>
             Browse rental properties across the web.
-            <br />{' '}
+            <br />
             <Link to='/how'>
-              <span className='highlight-link'>And get natural traffic through Liv.</span>
+              <span className='highlight-link'>And increase leads coming through through Liv.</span>
             </Link>
           </h3>
           <div id='searchBar'>
