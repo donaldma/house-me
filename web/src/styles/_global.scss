@@ -90,18 +90,26 @@ h4 {
 }
 
 .orange-text {
-  color: $liv-orange;
+  color: $liv-orange !important;
   font-weight: bold;
 }
 
 .blue-text {
-  color: $light-blue;
+  color: $light-blue !important;
+}
+
+.white-text {
+  color: white !important;
 }
 
 .details-text {
   font-style: italic;
   padding-top: 10px;
   font-size: 14px !important;
+}
+
+.inline {
+  display: inline !important;
 }
 
 a {

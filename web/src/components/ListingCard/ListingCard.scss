@@ -1,0 +1,56 @@
+.listingCard {
+  width: 338px;
+  height: auto;
+  max-height: 445px;
+  margin-right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 2px 4px 0px;
+  margin-bottom: 46px;
+  position: relative;
+  border-radius: 10px;
+  text-decoration: none;
+  a {
+    color: inherit !important;
+  }
+  .photoSection {
+    height: 228px;
+    background-color: grey;
+    .peekPhoto {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px 10px 0px 0px;
+    }
+    .userIcon{
+      position: absolute;
+      top: 198px;
+      left: 260px;
+    }
+  }
+  .info {
+      padding-top: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+    .upper-info {
+        position: relative;
+        padding-bottom: 10px;
+        border-bottom: solid 1px grey;
+    }
+    .lower-info {
+        padding-top: 18px;
+        padding-bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+    }
+  }
+}
+
+.listingCard:hover {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 4px 5px 0px;
+  a {
+    color: inherit !important;
+  }
+}
