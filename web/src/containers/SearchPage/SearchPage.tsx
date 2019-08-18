@@ -16,7 +16,7 @@ class SearchPage extends React.Component<{}, {}> {
             Browse rental properties across the web.
             <br />
             <Link to='/how'>
-              <span className='highlight-link'>And increase leads coming through through Liv.</span>
+              <span className='highlight-link'>And increase leads coming through Liv.</span>
             </Link>
           </h3>
           <div id='searchBar'>

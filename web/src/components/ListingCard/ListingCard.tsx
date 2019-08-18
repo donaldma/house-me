@@ -18,6 +18,7 @@ const userIconPink: string = './img/user-icon-pink.svg'
 const userIconYellow: string = './img/user-icon-yellow.svg'
 
 export interface IListingInfo {
+  id: number
   imgURL: string
   title: string
   subtitle: string
@@ -63,9 +64,9 @@ class ListingCard extends React.Component<IListingCardProps, {}> {
       )
     } else {
       return (
-        <Link to={`/`}>
+        <Link to={`/listings`}>
           <div className='photoSection'>
-            <img className='peekPhoto' src={this.props.info.imgURL} alt='rental-unit-photo' />
+            <img className='peekPhoto' src={this.props.info.imgURL} alt='rental-unit' />
             <img className='userIcon' src={this.getRandomUserIcon()} alt='user-icon'/>
           </div>
           <div className='info'>

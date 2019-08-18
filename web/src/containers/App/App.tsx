@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Nav from '../../components/Nav/Nav'
 import SearchPage from '../../containers/SearchPage/SearchPage'
 import Listings from '../../containers/Listings/Listings'
+import ListingInfoPage from '../ListingInfoPage/ListingInfoPage';
 
 class App extends React.Component<{}, {}> {
 
@@ -15,6 +16,10 @@ class App extends React.Component<{}, {}> {
 
   showListings=()=> {
     return(<Listings/>)
+  }
+
+  showSingleListingPage=()=> {
+    return <ListingInfoPage/>
   }
 
   showHow=()=>{
@@ -38,6 +43,7 @@ class App extends React.Component<{}, {}> {
             <Switch>
               <Route exact path='/' component={this.showPrototype}/>
               <Route path='/listings' component={this.showListings}/>
+              <Route path='/listings:id' component={this.showSingleListingPage}/>
               <Route path='/how' component={this.showHow}/>
               <Route path='/about' component={this.showAbout}/>
             </Switch>
