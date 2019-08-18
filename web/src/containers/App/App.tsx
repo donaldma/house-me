@@ -42,8 +42,8 @@ class App extends React.Component<{}, {}> {
           <div className='app'>
             <Switch>
               <Route exact path='/' component={this.showPrototype}/>
-              <Route path='/listings' component={this.showListings}/>
-              <Route path='/listings:id' component={this.showSingleListingPage}/>
+              <Route exact path='/listings' component={this.showListings}/>
+              <Route path='/listings/example' component={this.showSingleListingPage}/>
               <Route path='/how' component={this.showHow}/>
               <Route path='/about' component={this.showAbout}/>
             </Switch>

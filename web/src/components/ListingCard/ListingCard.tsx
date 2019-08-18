@@ -64,7 +64,7 @@ class ListingCard extends React.Component<IListingCardProps, {}> {
       )
     } else {
       return (
-        <Link to={`/listings`}>
+        <Link to={'/listings/example'}>
           <div className='photoSection'>
             <img className='peekPhoto' src={this.props.info.imgURL} alt='rental-unit' />
             <img className='userIcon' src={this.getRandomUserIcon()} alt='user-icon'/>
