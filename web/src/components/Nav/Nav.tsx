@@ -3,12 +3,12 @@ import React from 'react'
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
 // @ts-ignore
 import classNames from 'classnames'
-import { AuthService } from '../../services/AuthService'
-import { ErrorService } from '../../services/ErrorService'
+// import logo from '/img/logo.svg'
+const logo:string = '/img/logo.svg'
 
 interface IProps {
-  isAuthenticated: boolean
-  setAuthenticationStatus: (isAuthenticated: boolean) => void
+  isAuthenticated?: boolean
+  setAuthenticationStatus?: (isAuthenticated: boolean) => void
 }
 
 interface IState {
@@ -22,16 +22,16 @@ interface INavConfig {
 
 const navConfig: INavConfig[] = [
   {
-    title: 'New Record',
-    url: '/records/new'
+    title: 'Prototype',
+    url: '/'
   },
   {
-    title: 'All Record',
-    url: '/records'
+    title: 'How it works',
+    url: '/how'
   },
   {
-    title: 'IOU',
-    url: '/iou'
+    title: 'About us',
+    url: '/about'
   }
 ]
 
@@ -67,21 +67,11 @@ class Nav extends React.Component<IProps & RouteComponentProps, IState> {
     }
   }
 
-  handleLogout = async () => {
-    const { setAuthenticationStatus } = this.props
-    try {
-      await AuthService.logout()
-      setAuthenticationStatus(false)
-    } catch (err) {
-      ErrorService.parseServerError(err)
-    }
-  }
-
   renderDesktopContent = () => {
     return (
       <ul className='right'>
         {navConfig.map((config, index) => (
-          <li key={index}>
+          <li key={index} className={this.selectIfActive(config.url)}>
             <Link to={config.url}>{config.title}</Link>
           </li>
         ))}
@@ -93,7 +83,7 @@ class Nav extends React.Component<IProps & RouteComponentProps, IState> {
     return (
       <ul>
         {navConfig.map((config, index) => (
-          <li key={index}>
+          <li key={index}  className={this.selectIfActive(config.url)}>
             <Link to={config.url} className='mobile-label'>
               {config.title}
             </Link>
@@ -101,6 +91,14 @@ class Nav extends React.Component<IProps & RouteComponentProps, IState> {
         ))}
       </ul>
     )
+  }
+
+  selectIfActive = (url: string) => {
+    if (this.props.location.pathname === url) {
+      return 'selected disabled'
+    } else {
+      return ''
+    }
   }
 
   render() {
@@ -111,7 +109,7 @@ class Nav extends React.Component<IProps & RouteComponentProps, IState> {
       >
         <div className='mobile-logo'>
           <Link to='/'>
-            <img src='/img/nav-logo.png' alt='nav-logo' className='logo-img' />
+            <img src={logo} alt='nav-logo' className='logo-img' />
           </Link>
         </div>
         <button className='nav-trigger button-link' onClick={() => this.handleNavTriggerClick()}>
@@ -124,7 +122,7 @@ class Nav extends React.Component<IProps & RouteComponentProps, IState> {
             <ul className='left'>
               <li className='logo'>
                 <Link to='/'>
-                  <img src='/img/nav-logo.png' alt='nav-logo' className='logo-img' />
+                  <img src={logo} alt='nav-logo' className='logo-img' />
                 </Link>
               </li>
             </ul>

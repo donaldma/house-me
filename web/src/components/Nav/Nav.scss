@@ -1,20 +1,23 @@
 @import '../../styles/colors';
 @import '../../styles/mixins';
 
+$nav-height: 60px;
+
 .nav-header {
   position: relative;
-  height: 80px;
+  height: 40px;
   background-color: $white;
   box-shadow: 0 0.01rem 0.01rem rgba(0, 0, 0, 0.3);
   z-index: 999;
 
+  padding-right: 1em;
   .nav-trigger {
     /* menu icon - visible on small screens only */
     position: absolute;
     top: 0;
     right: 0;
-    height: 80px;
-    width: 80px;
+    height: $nav-height;
+    width: $nav-height;
     /* replace text with icon */
     overflow: hidden;
     text-indent: 100%;
@@ -66,12 +69,20 @@
 
   .main-nav {
     display: none;
+    .selected {
+      border-bottom: solid 3px $liv-orange !important;
+      a {
+      color: $liv-orange !important;
+      }
+    }
   }
 
   .logo-img {
+    object-fit: fill;
     width: 150px;
-    height: 80px;
+    height: $nav-height;
     vertical-align: middle;
+    padding: 10px;
   }
 
   .left {
@@ -89,12 +100,13 @@
     position: absolute;
     top: 0;
     right: 0;
+    padding-right: 1em;
   }
 
   .dropdown-wrapper {
     display: none;
     position: absolute;
-    top: 80px;
+    top: $nav-height;
     left: 0;
     width: 100%;
     padding: 1.2em 5%;
@@ -160,11 +172,12 @@
     }
 
     .main-nav > ul > li > a {
+      font-weight: 600;
       display: block;
       padding: 0 1em;
-      height: 80px;
-      line-height: 76px;
-      color: $dark;
+      height: $nav-height;
+      line-height: $nav-height;
+      color: $grey;
       transition: opacity 0.2s;
       text-decoration: none !important;
     }
