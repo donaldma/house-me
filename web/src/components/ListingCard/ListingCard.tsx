@@ -1,7 +1,7 @@
 import React from 'react'
 import './ListingCard.scss'
 import ContentLoader from 'react-content-loader'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const MyLoader = () => (
   <ContentLoader height={380} width={280} speed={2} primaryColor='#f3f3f3' secondaryColor='#ecebeb'>
@@ -12,6 +12,10 @@ const MyLoader = () => (
   </ContentLoader>
 )
 const userIcon: string = './img/user-icon.svg'
+const userIconPurple: string = './img/user-icon-purple.svg'
+const userIconGreen: string = './img/user-icon-green.svg'
+const userIconPink: string = './img/user-icon-pink.svg'
+const userIconYellow: string = './img/user-icon-yellow.svg'
 
 export interface IListingInfo {
   imgURL: string
@@ -30,6 +34,26 @@ interface IListingCardProps {
 }
 
 class ListingCard extends React.Component<IListingCardProps, {}> {
+  getRandomUserIcon = () => {
+    switch (
+      Math.floor(Math.random() * Math.floor(5)) // I know it's a magic number
+    ) {
+      case 1: {
+        return userIcon
+      } case 2: {
+        return userIconGreen
+      } case 3: {
+        return userIconPink
+      } case 4: {
+        return userIconPurple
+      } case 5: {
+        return userIconYellow
+      } default: {
+        return userIcon
+      }
+    }
+  }
+
   showIfLoaded = () => {
     if (this.props.loading) {
       return (
@@ -42,19 +66,27 @@ class ListingCard extends React.Component<IListingCardProps, {}> {
         <Link to={`/`}>
           <div className='photoSection'>
             <img className='peekPhoto' src={this.props.info.imgURL} alt='rental-unit-photo' />
-            {/* <img className='userIcon' src={userIcon} alt='user-icon'/> */}
+            <img className='userIcon' src={this.getRandomUserIcon()} alt='user-icon'/>
           </div>
           <div className='info'>
-
             <div className='upper-info'>
-                <h1>{this.props.info.title}</h1>
-                <h3>{this.props.info.subtitle}</h3>
-                <br/>
-                <h3>{this.props.info.beds} Beds - {this.props.info.bath} Baths</h3>
+              <h1>{this.props.info.title}</h1>
+              <h3>{this.props.info.subtitle}</h3>
+              <br />
+              <h3>
+                {this.props.info.beds} Beds - {this.props.info.bath} Baths
+              </h3>
             </div>
             <div className='lower-info'>
-                <span><h1 className='inline'><strong>{this.props.info.cost}</strong></h1><h4 className='inline'> / Month</h4></span>
-                <span><h4>{this.props.info.sqft} SQFT</h4></span>
+              <span>
+                <h1 className='inline'>
+                  <strong>{this.props.info.cost}</strong>
+                </h1>
+                <h4 className='inline'> / Month</h4>
+              </span>
+              <span>
+                <h4>{this.props.info.sqft} SQFT</h4>
+              </span>
             </div>
           </div>
         </Link>

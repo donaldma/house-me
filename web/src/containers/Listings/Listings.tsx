@@ -1,9 +1,8 @@
 import React from 'react'
 import './Listings.scss'
 import ListingCard, { IListingInfo } from '../../components/ListingCard/ListingCard'
-import Footer from '../../components/Footer/Footer';
 
-const marketingMumbo: string = '/img/Marketing-mumbo.svg'
+// const marketingMumbo: string = '/img/Marketing-mumbo.svg'
 const livImage: string = '/img/Marketing-mumbo-use-liv.svg'
 const altImage: string = '/img/Marketing-mumbo-use-everything-else.svg'
 const emptyListing: IListingInfo = {
@@ -73,7 +72,6 @@ class Listings extends React.Component<{}, IListingsState> {
             <div className='searchResults'>
         {this.renderAllListings()}
             </div>
-            <Footer/>
       </div>
     )
   }

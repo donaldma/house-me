@@ -2,6 +2,10 @@
 
 $nav-height: 60px;
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: 'Roboto', 'Open sans', sans-serif;
   color: $dark;
