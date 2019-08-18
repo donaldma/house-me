@@ -1,0 +1,10 @@
+@import '../../styles/global.scss';
+@import '../../styles/colors';
+@import '../../styles/mixins';
+@import '../../../node_modules/react-toastify/dist/ReactToastify.min.css';
+
+.app {
+  @include MQ(M) {
+    margin-top: 80px;
+  }
+}

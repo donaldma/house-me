@@ -1,0 +1,14 @@
+{
+  "name": "house-me",
+  "version": "0.1.0",
+  "author": "Donald Ma",
+  "license": "MIT",
+  "scripts": {
+    "heroku-postbuild": "(npm run web-build) && (npm run api-build)",
+    "web-build": "cd web && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "api-build": "cd api && npm install && npm run build",
+    "install-all": "(cd web && npm install) && (cd api && npm install)",
+    "start": "cd api && npm run serve"
+  },
+  "keywords": []
+}

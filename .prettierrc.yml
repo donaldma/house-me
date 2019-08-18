@@ -1,0 +1,5 @@
+arrowParens: always
+jsxSingleQuote: true
+printWidth: 110
+semi: false
+singleQuote: true

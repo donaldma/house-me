@@ -1,0 +1,180 @@
+@import '../../styles/colors';
+@import '../../styles/mixins';
+
+.nav-header {
+  position: relative;
+  height: 80px;
+  background-color: $white;
+  box-shadow: 0 0.01rem 0.01rem rgba(0, 0, 0, 0.3);
+  z-index: 999;
+
+  .nav-trigger {
+    /* menu icon - visible on small screens only */
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 80px;
+    width: 80px;
+    /* replace text with icon */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+    color: transparent;
+
+    span,
+    span::after,
+    span::before {
+      /* these are the 3 lines of the menu icon */
+      position: absolute;
+      background-color: $dark;
+      height: 3px;
+      width: 26px;
+    }
+
+    span {
+      @include center;
+      transition: background-color 0.3s;
+    }
+
+    span::after,
+    span::before {
+      content: '';
+      left: 0;
+      transition: transform 0.3s;
+    }
+
+    span::before {
+      transform: translateY(-9px);
+    }
+
+    span::after {
+      transform: translateY(9px);
+    }
+  }
+
+  &.nav-open .nav-trigger span {
+    background-color: transparent;
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .logo-img {
+    width: 150px;
+    height: 80px;
+    vertical-align: middle;
+  }
+
+  .left {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .mobile-logo {
+    line-height: 76px;
+    margin-left: 1rem;
+  }
+
+  .right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .dropdown-wrapper {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    padding: 1.2em 5%;
+    box-shadow: 0 0.01rem 0.01rem rgba(0, 0, 0, 0.3);
+    background-color: $white;
+  }
+
+  &.nav-open .dropdown-wrapper {
+    display: block;
+  }
+
+  .dropdown-list > ul > li {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-label {
+    display: block;
+    font-size: 18px;
+    color: $dark;
+    margin-bottom: 0.5em;
+    text-decoration: none !important;
+  }
+
+  .button-link {
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .nav-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+  }
+
+  .dropdown-menu {
+    top: -15px !important;
+    left: -10px !important;
+  }
+
+  @include MQ(M) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+
+    .nav-trigger,
+    .mobile-logo {
+      display: none;
+    }
+
+    .main-nav {
+      display: inline-block;
+    }
+
+    .main-nav > ul > li {
+      display: inline-block;
+    }
+
+    .main-nav > ul > li > a {
+      display: block;
+      padding: 0 1em;
+      height: 80px;
+      line-height: 76px;
+      color: $dark;
+      transition: opacity 0.2s;
+      text-decoration: none !important;
+    }
+
+    .mobile-label {
+      display: none;
+    }
+
+    .dropdown-wrapper {
+      display: none !important;
+    }
+  }
+}

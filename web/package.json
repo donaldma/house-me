@@ -1,0 +1,71 @@
+{
+  "name": "house-me-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/googlemaps": "^3.36.6",
+    "@types/jest": "^24.0.13",
+    "@types/lodash": "^4.14.135",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/node": "^12.0.2",
+    "@types/query-string": "^6.3.0",
+    "@types/react": "^16.8.18",
+    "@types/react-dates": "^17.1.5",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-geosuggest": "^2.7.8",
+    "@types/react-map-gl": "^4.1.2",
+    "@types/react-tooltip": "^3.9.2",
+    "@types/yup": "^0.26.22",
+    "axios": "^0.19.0",
+    "be-pretty": "^0.9.3",
+    "classnames": "^2.2.6",
+    "cloudinary": "^1.14.0",
+    "cloudinary-react": "^1.1.1",
+    "formik": "^1.5.8",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.17.1",
+    "query-string": "^6.7.0",
+    "react": "^16.8.6",
+    "react-bnb-gallery": "^1.1.6",
+    "react-dates": "^20.2.2",
+    "react-dom": "^16.8.6",
+    "react-geosuggest": "^2.12.0",
+    "react-google-maps": "^9.4.5",
+    "react-horizontal-scrolling-menu": "^0.6.12",
+    "react-map-gl": "^5.0.3",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^5.2.1",
+    "react-tooltip": "^3.10.0",
+    "router": "^1.3.3",
+    "typescript": "^3.4.5",
+    "yup": "^0.27.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "format": "be-pretty formatAll"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^4.3.3"
+  },
+  "proxy": "http://localhost:3001"
+}
