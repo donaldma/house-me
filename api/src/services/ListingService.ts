@@ -28,7 +28,7 @@ class ListingService {
   }
 
   async fetch(): Promise<IFetchedListing[]> {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
     const page = await browser.newPage()
     await page.goto('https://vancouver.craigslist.org/search/rch/apa?hasPic=1')
     const listings = await page.evaluate(() => {
@@ -81,7 +81,7 @@ class ListingService {
   }
 
   async fetchDetails(listingUrl: string): Promise<IListingDetails> {
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] })
     const page = await browser.newPage()
     await page.goto(listingUrl)
 
