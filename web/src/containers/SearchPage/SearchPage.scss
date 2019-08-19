@@ -5,7 +5,7 @@ $skyline: '/img/Skyline.png';
 
 #searchPage {
   position: fixed;
-  height: calc(101vh - $nav-height);
+  height: calc(101vh - #{$nav-height});
   width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
@@ -38,7 +38,7 @@ $skyline: '/img/Skyline.png';
           padding-right: 15px;
         }
         #nextIcon {
-            height: 19px;
+          height: 19px;
         }
       }
     }
