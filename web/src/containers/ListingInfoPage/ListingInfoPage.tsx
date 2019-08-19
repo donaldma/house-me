@@ -112,15 +112,42 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
   }
 
   showContactCard = () => {
-    return <div className='col-md-3'>
-      <div className='side-bar'>
-        Rent / month
-          <button onClick={() => this.openModal()}>click to show modal</button>
-          <Modal show={this.state.modalShow} onHide={this.closeModal}>
-            {this.showModalMessage()}
-          </Modal>
+    return (
+      <div className='col-md-3'>
+        <div className='side-bar-contact'>
+          <div className='coloredTab'></div>
+          <div className='border-box'>
+            <div className='cost-info'>
+              <h2 className='inline'>
+                <strong>$Rent</strong>
+              </h2>{' '}
+              <p className='inline'>/ month</p>
+            </div>
+            <div className='contactButtons'>
+              <button className='btn btn-primary btn-block blue-button' onClick={() => this.openModal()}>chat with landlord</button>
+              <button className='btn btn-white btn-block white-button' onClick={() => this.openModal()}>chat with landlord</button>
+              
+            </div>
+          </div>
+        </div>
       </div>
+    )
+  }
+
+  showContent = () => {
+    return (
+      
+    <div className='listing-content'>
+      <h2 className='section-title'>Address</h2>
+      <ul className='info-tags'>
+        <li>N bedrooms</li>
+        <li>N bathrooms</li>
+        <li>NN SQFT</li>
+        <li>Furnished?</li>
+      </ul>
+      <h2 className='section-title'> Listings details </h2>
     </div>
+    )
   }
 
   showIfLoaded = () => {
@@ -137,17 +164,19 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
       return (
         <div>
           <div>
-            
-          <h1>photos</h1>
+            <h1>photos</h1>
           </div>
           <div className='container'>
             <div className='row'>
               <div className='col-md-9'>
-                <p> content</p>
+                {this.showContent()}
               </div>
               {this.showContactCard()}
             </div>
           </div>
+          <Modal show={this.state.modalShow} onHide={this.closeModal}>
+                {this.showModalMessage()}
+              </Modal>
         </div>
       )
     }
