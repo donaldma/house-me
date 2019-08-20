@@ -6,16 +6,17 @@ import { ListingService, IListingEntity } from '../../services/ListingService'
 // const marketingMumbo: string = '/img/Marketing-mumbo.svg'
 const livImage: string = '/img/Marketing-mumbo-use-liv.svg'
 const altImage: string = '/img/Marketing-mumbo-use-everything-else.svg'
+const genericDate: Date = new Date('August 19th, 2019 20:32:00')
 const emptyListing: IListingEntity = {
   id: 0,
-  createDate: new Date('August 19th, 2019 20:32:00'),
+  createDate: genericDate,
   title: '',
   location: '',
   price: '',
   beds: 0,
   sqft: 0,
   listingUrl: '',
-  imageUrl: '',
+  imageUrl: ''
 }
 
 interface IListingsState {
@@ -28,31 +29,34 @@ class Listings extends React.Component<{}, IListingsState> {
   state = {
     loading: true, // important in-case user wants to reload or change search criteria
     allListings: [],
-    maxResults: 30
+    maxResults: 10
   }
 
-  componentWillMount = async () => {
+  componentDidMount = async () => {
     // show the placeholder items
     // check if still loading
-    const allListings = await ListingService.getAllListings()
+    const allListings = (await ListingService.getAllListings()).slice(0, 30)
     this.setState({
-      loading: false,
-      allListings: allListings
+      allListings: allListings,
+      loading: false
     })
   }
 
   renderAllListings = () => {
     if (this.state.loading === true) {
+      console.log('showing filler')
       for (let i = 0; i < this.state.maxResults; i++) {
-        this.displaySingleListing(emptyListing, i)
+        return this.displaySingleListing(emptyListing, i)
       }
     } else {
+      console.log('showing real')
       return this.state.allListings.map(this.displaySingleListing)
     }
   }
 
   displaySingleListing = (info: IListingEntity, index: number) => {
     console.log(index, info)
+    console.log(this.state.loading)
     return <ListingCard key={index} loading={this.state.loading} info={info} />
   }
 
@@ -78,51 +82,3 @@ class Listings extends React.Component<{}, IListingsState> {
   }
 }
 export default Listings
-
-const mockData: IListingEntity[] = [
-  {
-    id: 1,
-    createDate: new Date('August 19th, 2019 20:32:00'),
-    imageUrl:
-      'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 1',
-    location: 'subtitle here',
-    beds: 6,
-    price: '5000',
-    sqft: 345,
-    listingUrl: 'https://www.facebook.com/marketplace'
-  },  {
-    id: 2,
-    createDate: new Date('August 19th, 2019 20:32:00'),
-    imageUrl:
-      'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 1',
-    location: 'subtitle here',
-    beds: 6,
-    price: '5000',
-    sqft: 345,
-    listingUrl: 'https://www.facebook.com/marketplace'
-  },  {
-    id: 3,
-    createDate: new Date('August 19th, 2019 20:32:00'),
-    imageUrl:
-      'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 1',
-    location: 'subtitle here',
-    beds: 6,
-    price: '5000',
-    sqft: 345,
-    listingUrl: 'https://www.facebook.com/marketplace'
-  },  {
-    id: 4,
-    createDate: new Date('August 19th, 2019 20:32:00'),
-    imageUrl:
-      'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 1',
-    location: 'subtitle here',
-    beds: 6,
-    price: '5000',
-    sqft: 345,
-    listingUrl: 'https://www.facebook.com/marketplace'
-  },
-]

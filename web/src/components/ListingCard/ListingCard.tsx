@@ -24,6 +24,11 @@ interface IListingCardProps {
 }
 
 class ListingCard extends React.Component<IListingCardProps, {}> {
+
+componentWillMount = () => {
+  console.log(this.props.loading)
+}
+
   getRandomUserIcon = () => {
     switch (
       Math.floor(Math.random() * Math.floor(5)) // I know it's a magic number
@@ -45,7 +50,9 @@ class ListingCard extends React.Component<IListingCardProps, {}> {
   }
 
   showIfLoaded = () => {
+    console.log('showing card')
     if (this.props.loading) {
+      console.log('showing loading')
       return (
         <div>
           <MyLoader />
