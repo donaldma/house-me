@@ -6,6 +6,9 @@ import Form from 'react-bootstrap/Form'
 import ContentLoader from 'react-content-loader'
 import { ListingService, FullListingDetails } from '../../services/ListingService'
 
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 const CarouselLoader = () => (
   <ContentLoader height={350} width={1050} speed={2} primaryColor='#f3f3f3' secondaryColor='#ecebeb'>
     <rect x='12' y='21' rx='0' ry='0' width='1025' height='350' />
@@ -77,7 +80,10 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
             <Modal.Title>Message sent!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p><strong>Thanks for trying our prototype. </strong></p> <p>If you thought this was cool, we'd love to chat and potentially join your company.</p>
+            <p>
+              <strong>Thanks for trying our prototype. </strong>
+            </p>{' '}
+            <p>If you thought this was cool, we'd love to chat and potentially join your company.</p>
           </Modal.Body>
           <Modal.Footer>
             {/* <button  className='btn btn-secondary' onClick={() => this.setState({ messageSent: false })}>Go back</button> */}
@@ -104,7 +110,11 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
 
                 <Form.Group controlId='formBasicMessage'>
                   <Form.Label>Message</Form.Label>
-                  <Form.Control as='textarea' rows='10'placeholder='Hi there! I found your listing through Liv.rent and I would like to know more about your property' />
+                  <Form.Control
+                    as='textarea'
+                    rows='10'
+                    placeholder='Hi there! I found your listing through Liv.rent and I would like to know more about your property'
+                  />
                 </Form.Group>
                 {/* <Form.Group controlId='formBasicChecbox'>
                   <Form.Check type='checkbox' label='some kind of captcha' />
@@ -152,17 +162,23 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
     if (this.state.info) {
       return (
         <div className='listing-content'>
-        <h2 className='section-title'>{this.getCheckedTitle()}</h2>
+          <h2 className='section-title'>{this.getCheckedTitle()}</h2>
           <h2 className='section-title'>{this.getCheckedLocation()}</h2>
           <ul className='info-tags'>
             <li>{this.getCheckedBed()} bedrooms</li>
             <li>{this.getCheckedBaths()} bathrooms</li>
             <li>{this.getCheckedSQFT()} SQFT</li>
             <li>Furnished?</li>
-            <li><a href={this.getCheckedLisingURL()} target="_blank">view source</a></li>
+            <li>
+              <a href={this.getCheckedLisingURL()} target='_blank'>
+                view source
+              </a>
+            </li>
           </ul>
           <h2 className='section-title'> Description </h2>
-          <div><p>{this.getCheckedDescription()}</p></div>
+          <div>
+            <p>{this.getCheckedDescription()}</p>
+          </div>
         </div>
       )
     } else {
@@ -221,7 +237,7 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
       }
     }
   }
-  
+
   getCheckedSQFT = () => {
     let infoCheck: any = this.state.info
     if (!infoCheck) {
@@ -234,7 +250,7 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
       }
     }
   }
-  
+
   getCheckedLisingURL = () => {
     let infoCheck: any = this.state.info
     if (!infoCheck) {
@@ -243,33 +259,60 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
       return infoCheck.listingUrl
     }
   }
-  
+
   getCheckedDescription = () => {
     let infoCheck: any = this.state.info
     if (!infoCheck) {
       return <span>?</span>
     } else {
       return <span>{infoCheck.description}</span>
-      }
     }
-  
+  }
+
   getCheckedPrice = () => {
     let infoCheck: any = this.state.info
     if (!infoCheck) {
       return <span>?</span>
     } else {
       return <span>{infoCheck.price}</span>
-      }
     }
+  }
 
-    getCheckedImages = () => {
-      let infoCheck: any = this.state.info
-      if (!infoCheck) {
-        return []
-      } else {
-        return infoCheck.images
-      }
+  getCheckedImages = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return []
+    } else {
+      return infoCheck.images
     }
+  }
+
+  showPhotoCarousel = () => {
+    const images: string[] = this.getCheckedImages()
+
+    console.log(images.length)
+
+    if (images.length > 1) {
+      return (
+        <Carousel centerSlidePercentage={50} showArrows={true} dynamicHeight={true} centerMode={true}>
+          {images.map(this.showSinglePhoto)}
+        </Carousel>
+      )
+    } else {
+      return <div />
+    }
+  }
+
+  showSinglePhoto = (photo: string, index: number) => {
+    // const divStyle: any = {
+    //   backgroundImage: 'url(' + photo + ')'
+    // }
+    return (
+      <div key={index}>
+        <img src={photo}/>
+      </div>
+    )
+  }
 
   showIfLoaded = () => {
     if (this.state.loading) {
@@ -284,9 +327,8 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
     } else {
       return (
         <div>
-          <div id='photos-section'>
-          </div>
           <div className='container'>
+          <div id='photos-section'>{this.showPhotoCarousel()}</div>
             <div className='row'>
               <div className='col-md-9'>{this.showContent()}</div>
               {this.showContactCard()}

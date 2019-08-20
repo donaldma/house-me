@@ -62,8 +62,7 @@ class ListingCard extends React.Component<IListingCardProps, {}> {
           <div className='info'>
             <div className='upper-info'>
               <h1>{this.props.info.location}</h1>
-              <h3>{this.props.info.title}</h3>
-              <br />
+              <p>{this.props.info.title}</p>
               <h3>
                 {this.props.info.beds} Beds
               </h3>

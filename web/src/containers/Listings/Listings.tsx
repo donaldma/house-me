@@ -29,7 +29,7 @@ class Listings extends React.Component<{}, IListingsState> {
   state = {
     loading: true, // important in-case user wants to reload or change search criteria
     allListings: [],
-    maxResults: 10
+    maxResults: 30
   }
 
   componentDidMount = async () => {
@@ -45,9 +45,7 @@ class Listings extends React.Component<{}, IListingsState> {
   renderAllListings = () => {
     if (this.state.loading === true) {
       console.log('showing filler')
-      for (let i = 0; i < this.state.maxResults; i++) {
-        return this.displaySingleListing(emptyListing, i)
-      }
+        return this.displayLoadingCards()
     } else {
       console.log('showing real')
       return this.state.allListings.map(this.displaySingleListing)
@@ -56,6 +54,14 @@ class Listings extends React.Component<{}, IListingsState> {
 
   displaySingleListing = (info: IListingEntity, index: number) => {
     return <ListingCard key={index} loading={this.state.loading} info={info} />
+  }
+
+  displayLoadingCards = () => {
+    return [
+      <ListingCard key={1} loading={true} info={emptyListing} />,
+      <ListingCard key={2} loading={true} info={emptyListing} />,
+      <ListingCard key={3} loading={true} info={emptyListing} />
+    ]
   }
 
   render() {
