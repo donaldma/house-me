@@ -32,7 +32,7 @@ function About() {
                   </strong>
                 </a>
                 <br />
-                Email - Github - LinkedIn - Portfolio
+                <a href='mailto:alexkim.347@gmail.com'>alexkim.347@gmail.com</a> <br/><a href='https://github.com/oklex'>Github/oklex</a> - <a href='https://www.linkedin.com/in/akim-97/'>LinkedIn</a> - <a href='https://romantic-borg-2dc9e4.netlify.com'>Personal</a>
               </p>
             </div>
           </div>
@@ -51,7 +51,7 @@ function About() {
                   </strong>
                 </a>
                 <br />
-                Email - Github - LinkedIn
+                <a href='mailto:donald.ma@hotmail.ca'>donald.ma@hotmail.ca</a><br/> <a href='https://github.com/donaldma'>Github/donaldma</a> - <a href='https://www.linkedin.com/in/donaldma/'>LinkedIn</a>
               </p>
             </div>
           </div>
