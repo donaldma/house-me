@@ -1,0 +1,49 @@
+@import '../../styles/colors';
+
+#how-page {
+  margin-top: 150px;
+
+  p {
+      color:$dark;
+  }
+  #dark-section {
+    margin-top: 80px;
+    background-color: lightcoral;
+    padding-top: 30px;
+    padding-bottom: 80px;
+    .description-card {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .main-text {
+        max-width: 600px;
+        width: 100%;
+        background-color: white;
+        padding: 25px;
+        margin-top: 30px;
+        border-radius: 15px 0px 0px 15px;
+      }
+      .call-action {
+        //   max-width: 300px;
+        background-color: lightgrey;
+        width: 300px;
+        padding: 25px;
+        margin-top: 30px;
+        border-radius: 0px 15px 15px 0px;
+        transition: 0.2s ease-in;
+      }
+      .call-action:hover {
+        box-shadow: 0px 4px 4px grey;
+      }
+
+      @media only screen and (max-width: 1212px) {
+        .main-text {
+          border-radius: 15px;
+        }
+        .call-action {
+          border-radius: 15px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import '../../styles/colors';
+
+#about-page {
+  margin-top: 140px;
+  text-align: center;
+  #title {
+    margin-bottom: 40px;
+  }
+  .find-out {
+    margin-top: 30px;
+    .links {
+      color: $light-blue;
+      .dlIcon {
+        transform: scale(0.7);
+      }
+    }
+    .illustration {
+      width: 60%;
+      margin-bottom: 25px;
+      transform: scale(0.98);
+      transition: 0.5s;
+    }
+    .illustration:hover {
+      transform: scale(1);
+    }
+  }
+}

@@ -6,6 +6,7 @@ import SearchPage from '../../containers/SearchPage/SearchPage'
 import Listings from '../../containers/Listings/Listings'
 import ListingInfoPage from '../ListingInfoPage/ListingInfoPage'
 import How from '../How/How'
+import About from '../About/About'
 
 class App extends React.Component<{}, {}> {
 
@@ -31,7 +32,7 @@ class App extends React.Component<{}, {}> {
 
   showAbout =()=> {
     return (
-      <div><p>about us</p></div>
+      <About/>
     )
   }
 
