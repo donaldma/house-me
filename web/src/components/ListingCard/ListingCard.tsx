@@ -2,6 +2,7 @@ import React from 'react'
 import './ListingCard.scss'
 import ContentLoader from 'react-content-loader'
 import { Link } from 'react-router-dom'
+import { IListingEntity} from '../../services/ListingService'
 
 const MyLoader = () => (
   <ContentLoader height={380} width={280} speed={2} primaryColor='#f3f3f3' secondaryColor='#ecebeb'>
@@ -17,21 +18,9 @@ const userIconGreen: string = './img/user-icon-green.svg'
 const userIconPink: string = './img/user-icon-pink.svg'
 const userIconYellow: string = './img/user-icon-yellow.svg'
 
-export interface IListingInfo {
-  id: number
-  imgURL: string
-  title: string
-  subtitle: string
-  beds: number
-  bath: number
-  cost: number
-  sqft: number
-  src: string
-}
-
 interface IListingCardProps {
   loading: boolean
-  info: IListingInfo
+  info: IListingEntity
 }
 
 class ListingCard extends React.Component<IListingCardProps, {}> {
@@ -66,22 +55,22 @@ class ListingCard extends React.Component<IListingCardProps, {}> {
       return (
         <Link to={'/listings/example'}>
           <div className='photoSection'>
-            <img className='peekPhoto' src={this.props.info.imgURL} alt='rental-unit' />
+            <img className='peekPhoto' src={this.props.info.imageUrl} alt='rental-unit' />
             <img className='userIcon' src={this.getRandomUserIcon()} alt='user-icon'/>
           </div>
           <div className='info'>
             <div className='upper-info'>
-              <h1>{this.props.info.title}</h1>
-              <h3>{this.props.info.subtitle}</h3>
+              <h1>{this.props.info.location}</h1>
+              <h3>{this.props.info.title}</h3>
               <br />
               <h3>
-                {this.props.info.beds} Beds - {this.props.info.bath} Baths
+                {this.props.info.beds} Beds
               </h3>
             </div>
             <div className='lower-info'>
               <span>
                 <h1 className='inline'>
-                  <strong>{this.props.info.cost}</strong>
+                  <strong>{this.props.info.price}</strong>
                 </h1>
                 <h4 className='inline'> / Month</h4>
               </span>
