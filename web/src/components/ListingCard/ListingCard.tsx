@@ -25,10 +25,6 @@ interface IListingCardProps {
 
 class ListingCard extends React.Component<IListingCardProps, {}> {
 
-componentWillMount = () => {
-  console.log(this.props.loading)
-}
-
   getRandomUserIcon = () => {
     switch (
       Math.floor(Math.random() * Math.floor(5)) // I know it's a magic number
@@ -50,9 +46,7 @@ componentWillMount = () => {
   }
 
   showIfLoaded = () => {
-    console.log('showing card')
     if (this.props.loading) {
-      console.log('showing loading')
       return (
         <div>
           <MyLoader />
@@ -60,7 +54,7 @@ componentWillMount = () => {
       )
     } else {
       return (
-        <Link to={'/listings/example'}>
+        <Link to={`/listings/${this.props.info.id}`}>
           <div className='photoSection'>
             <img className='peekPhoto' src={this.props.info.imageUrl} alt='rental-unit' />
             <img className='userIcon' src={this.getRandomUserIcon()} alt='user-icon'/>

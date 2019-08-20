@@ -45,7 +45,7 @@ export const ListingService = {
     }
   },
 
-  async getSingleListing(id: number): Promise<FullListingDetails> {
+  async getSingleListing(id: string): Promise<FullListingDetails> {
     try {
       return await API.get(`/listings/${id}`).then(({ data }: { data: FullListingDetails }) => {
         console.log(data)

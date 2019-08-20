@@ -55,8 +55,6 @@ class Listings extends React.Component<{}, IListingsState> {
   }
 
   displaySingleListing = (info: IListingEntity, index: number) => {
-    console.log(index, info)
-    console.log(this.state.loading)
     return <ListingCard key={index} loading={this.state.loading} info={info} />
   }
 
