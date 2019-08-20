@@ -1,18 +1,20 @@
 import React from 'react'
 import './How.scss'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 function How() {
   return (
     <div id='how-page'>
       <div className='container'>
-        <h3>
-          <strong>How it works:</strong>
-        </h3>
-        <p>
-          Leverage SEO to market your service. This might prove valuable to a rental marketplace company
-          because.
-        </p>
+        <div className='title'>
+          <h1>
+            <strong>How it works:</strong>
+          </h1><br/>
+          <h3 className='grey-text'>
+            Leverage SEO to market your service by funneling prospective renters through your platform to get
+            the word out.
+          </h3>
+        </div>
       </div>
       <div id='dark-section'>
         <div className='container'>
@@ -28,12 +30,12 @@ function How() {
             </div>
 
             <Link to='/about'>
-            <div className='call-action'>
-              <h4>Who made this?</h4>
-              <p>
-                <strong>Using:</strong> Typescript, Node.js, Express, Knex, Postgresql, Puppeteer
-              </p>
-            </div>
+              <div className='call-action'>
+                <h4>Who made this?</h4>
+                <p>
+                  <strong>Using:</strong> Typescript, Node.js, Express, Knex, Postgresql, Puppeteer
+                </p>
+              </div>
             </Link>
           </div>
           <div className='description-card'>
@@ -42,17 +44,18 @@ function How() {
                 <strong>The design:</strong>
               </h3>
               <p>
-                We designed out code to be re-useable and effecient to develop (as well as aestehtcially
-                pleasing). Quality code is important to us.
+                Building in REACT ts, we designed based our design off Liv.rent and custom made all
+                icons/illustrations.
               </p>
             </div>
-              <Link to='/about'>
-            <div className='call-action'>
-              <h4>Who made this?</h4>
-              <p>
-                <strong>Using:</strong> React ts, SASS
-              </p>
-            </div></Link>
+            <Link to='/about'>
+              <div className='call-action'>
+                <h4>Who made this?</h4>
+                <p>
+                  <strong>Using:</strong> React ts, SASS
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
