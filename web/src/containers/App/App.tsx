@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Nav from '../../components/Nav/Nav'
 import SearchPage from '../../containers/SearchPage/SearchPage'
 import Listings from '../../containers/Listings/Listings'
-import ListingInfoPage from '../ListingInfoPage/ListingInfoPage';
+import ListingInfoPage from '../ListingInfoPage/ListingInfoPage'
+import How from '../How/How'
 
 class App extends React.Component<{}, {}> {
 
@@ -24,7 +25,7 @@ class App extends React.Component<{}, {}> {
 
   showHow=()=>{
     return(
-      <div><p>how it works</p></div>
+      <How/>
     )
   }
 
