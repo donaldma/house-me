@@ -23,7 +23,7 @@ function About() {
             <h3>
               <strong>Alexander Kim</strong>
             </h3>
-            <h4>Junior UX, Full-stack</h4>
+            <h4>Junior Full-stack. UX</h4>
             <div className='links'>
               <p>
                 <a href={alexResume} target='_blank'>
