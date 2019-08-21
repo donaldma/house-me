@@ -21,7 +21,7 @@ function How() {
           <div className='description-card'>
             <div className='main-text'>
               <h3>
-                <strong>The architecture</strong>
+                <strong>Back-end architecture</strong>
               </h3>
               <p>
                 The back-end api scrapes data directly off craigslist. We use a database to store the listings
@@ -41,10 +41,10 @@ function How() {
           <div className='description-card'>
             <div className='main-text'>
               <h3>
-                <strong>The design:</strong>
+                <strong>Front-end development:</strong>
               </h3>
               <p>
-                Building in REACT ts, we designed based our design off Liv.rent and custom made all
+                Building in REACT ts, we designed based our design off Liv.rent and custom made
                 icons/illustrations.
               </p>
             </div>
