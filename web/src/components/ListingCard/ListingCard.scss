@@ -1,7 +1,7 @@
 .listingCard {
   width: 338px;
   height: auto;
-  max-height: 445px;
+  min-height: 445px;
   margin-right: 10px;
   margin-left: 10px;
   cursor: pointer;
@@ -38,6 +38,8 @@
         position: relative;
         padding-bottom: 10px;
         border-bottom: solid 1px grey;
+        padding-right: 60px;
+        min-height: 160px;
     }
     .lower-info {
         padding-top: 18px;

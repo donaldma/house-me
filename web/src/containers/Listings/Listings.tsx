@@ -1,25 +1,27 @@
 import React from 'react'
 import './Listings.scss'
-import ListingCard, { IListingInfo } from '../../components/ListingCard/ListingCard'
+import ListingCard from '../../components/ListingCard/ListingCard'
+import { ListingService, IListingEntity } from '../../services/ListingService'
 
 // const marketingMumbo: string = '/img/Marketing-mumbo.svg'
 const livImage: string = '/img/Marketing-mumbo-use-liv.svg'
 const altImage: string = '/img/Marketing-mumbo-use-everything-else.svg'
-const emptyListing: IListingInfo = {
+const genericDate: Date = new Date('August 19th, 2019 20:32:00')
+const emptyListing: IListingEntity = {
   id: 0,
-  imgURL: '',
+  createDate: genericDate,
   title: '',
-  subtitle: '',
+  location: '',
+  price: '',
   beds: 0,
-  bath: 0,
-  cost: 0,
   sqft: 0,
-  src: ''
+  listingUrl: '',
+  imageUrl: ''
 }
 
 interface IListingsState {
   loading: boolean
-  allListings: IListingInfo[]
+  allListings: IListingEntity[]
   maxResults: number
 }
 
@@ -30,28 +32,36 @@ class Listings extends React.Component<{}, IListingsState> {
     maxResults: 30
   }
 
-  componentWillMount = () => {
+  componentDidMount = async () => {
     // show the placeholder items
     // check if still loading
+    const allListings = (await ListingService.getAllListings()).slice(0, 30)
     this.setState({
-      loading: false,
-      allListings: mockData
+      allListings: allListings,
+      loading: false
     })
   }
 
   renderAllListings = () => {
     if (this.state.loading === true) {
-      for (let i = 0; i < this.state.maxResults; i++) {
-        this.displaySingleListing(emptyListing, i)
-      }
+      console.log('showing filler')
+        return this.displayLoadingCards()
     } else {
+      console.log('showing real')
       return this.state.allListings.map(this.displaySingleListing)
     }
   }
 
-  displaySingleListing = (info: IListingInfo, index: number) => {
-    console.log(index, info)
+  displaySingleListing = (info: IListingEntity, index: number) => {
     return <ListingCard key={index} loading={this.state.loading} info={info} />
+  }
+
+  displayLoadingCards = () => {
+    return [
+      <ListingCard key={1} loading={true} info={emptyListing} />,
+      <ListingCard key={2} loading={true} info={emptyListing} />,
+      <ListingCard key={3} loading={true} info={emptyListing} />
+    ]
   }
 
   render() {
@@ -70,113 +80,9 @@ class Listings extends React.Component<{}, IListingsState> {
             </div>
           </div>
         </div>
-            <div className='searchResults'>
-        {this.renderAllListings()}
-            </div>
+        <div className='searchResults'>{this.renderAllListings()}</div>
       </div>
     )
   }
 }
 export default Listings
-
-const mockData: IListingInfo[] = [
-  {
-    id: 1,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 1',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 2,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 2',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 3,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 3',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 4,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 4',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 5,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 5',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 6,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 6',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 7,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 7',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 8,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 8',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  },
-  {
-    id: 9,
-    imgURL: 'https://d2jydbnljbirzw.cloudfront.net/fit-in/735x500/filters:quality(100)/static_files/unit/2396/unit_2396_5d5886b65ad61_blob',
-    title: 'title here 9',
-    subtitle: 'subtitle here',
-    beds: 6,
-    bath: 3,
-    cost: 5000,
-    sqft: 345,
-    src: 'https://www.facebook.com/marketplace'
-  }
-]

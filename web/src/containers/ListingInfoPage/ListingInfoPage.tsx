@@ -4,6 +4,10 @@ import './ListingInfoPage.scss'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import ContentLoader from 'react-content-loader'
+import { ListingService, FullListingDetails } from '../../services/ListingService'
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 const CarouselLoader = () => (
   <ContentLoader height={350} width={1050} speed={2} primaryColor='#f3f3f3' secondaryColor='#ecebeb'>
@@ -19,29 +23,39 @@ const MyPageLoader = () => (
   </ContentLoader>
 )
 
-interface IListingInfoPageProps extends RouteComponentProps {
-  // webListingID:number
-  // is a URL param
+interface IParams {
+  id: string
 }
+
+interface IListingInfoPageProps extends RouteComponentProps<IParams> {}
 
 interface IListingInfoPageState {
   loading: boolean
   modalShow: boolean
   messageSent: boolean
+  info: FullListingDetails | null
 }
 
 class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInfoPageState> {
   state = {
     loading: true,
     modalShow: false,
-    messageSent: false
+    messageSent: false,
+    info: null
   }
 
-  componentWillMount = () => {
+  componentDidMount = async () => {
     // call api
     // update loading state when done
+    console.log('loading info page')
+    console.log(this.props.match.params)
+    let param = this.props.match.params
+    console.log(param.id)
+    console.log(ListingService.getSingleListing(param.id))
+    const details: FullListingDetails = await ListingService.getSingleListing(param.id)
     this.setState({
-      loading: false
+      loading: false,
+      info: details
     })
   }
 
@@ -66,12 +80,15 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
             <Modal.Title>Message sent!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>message sent!</p>
+            <p>
+              <strong>Thanks for trying our prototype. </strong>
+            </p>{' '}
+            <p>If you thought this was cool, we'd love to chat and potentially join your company.</p>
           </Modal.Body>
           <Modal.Footer>
-            <button onClick={() => this.setState({ messageSent: false })}>Go back</button>
+            {/* <button  className='btn btn-secondary' onClick={() => this.setState({ messageSent: false })}>Go back</button> */}
             <Link to='/about'>
-              <button>About us</button>
+              <button className='btn btn-primary'>About us</button>
             </Link>
           </Modal.Footer>
         </div>
@@ -93,17 +110,21 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
 
                 <Form.Group controlId='formBasicMessage'>
                   <Form.Label>Message</Form.Label>
-                  <Form.Control as='textarea' rows='10' />
+                  <Form.Control
+                    as='textarea'
+                    rows='10'
+                    placeholder='Hi there! I found your listing through Liv.rent and I would like to know more about your property'
+                  />
                 </Form.Group>
-                <Form.Group controlId='formBasicChecbox'>
+                {/* <Form.Group controlId='formBasicChecbox'>
                   <Form.Check type='checkbox' label='some kind of captcha' />
-                </Form.Group>
+                </Form.Group> */}
               </Form>
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button onClick={() => this.setState({ messageSent: true })}>
-              Send message; go to next modal content panel
+            <button className='btn btn-primary' onClick={() => this.setState({ messageSent: true })}>
+              Send message (pretend)
             </button>
           </Modal.Footer>
         </div>
@@ -119,14 +140,17 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
           <div className='border-box'>
             <div className='cost-info'>
               <h2 className='inline'>
-                <strong>$Rent</strong>
-              </h2>{' '}
+                <strong>{this.getCheckedPrice()}</strong>
+              </h2>
               <p className='inline'>/ month</p>
             </div>
             <div className='contactButtons'>
-              <button className='btn btn-primary btn-block blue-button' onClick={() => this.openModal()}>chat with landlord</button>
-              <button className='btn btn-white btn-block white-button' onClick={() => this.openModal()}>chat with landlord</button>
-              
+              <button className='btn btn-primary btn-block blue-button' onClick={() => this.openModal()}>
+                chat with landlord
+              </button>
+              <button className='btn btn-white btn-block white-button' onClick={() => this.openModal()}>
+                chat with landlord
+              </button>
             </div>
           </div>
         </div>
@@ -135,18 +159,158 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
   }
 
   showContent = () => {
+    if (this.state.info) {
+      return (
+        <div className='listing-content'>
+          <h2 className='section-title'>{this.getCheckedTitle()}</h2>
+          <h2 className='section-title'>{this.getCheckedLocation()}</h2>
+          <ul className='info-tags'>
+            <li>{this.getCheckedBed()} bedrooms</li>
+            <li>{this.getCheckedBaths()} bathrooms</li>
+            <li>{this.getCheckedSQFT()} SQFT</li>
+            <li>Furnished?</li>
+            <li>
+              <a href={this.getCheckedLisingURL()} target='_blank'>
+                view source
+              </a>
+            </li>
+          </ul>
+          <h2 className='section-title'> Description </h2>
+          <div>
+            <p>{this.getCheckedDescription()}</p>
+          </div>
+        </div>
+      )
+    } else {
+      return <div />
+    }
+  }
+
+  getCheckedTitle = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      if (!infoCheck.title) {
+        return <span>?</span>
+      } else {
+        return <span>{infoCheck.title}</span>
+      }
+    }
+  }
+
+  getCheckedLocation = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      if (!infoCheck.location) {
+        return <span>?</span>
+      } else {
+        return <span>{infoCheck.location}</span>
+      }
+    }
+  }
+
+  getCheckedBed = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      if (!infoCheck.beds) {
+        return <span>?</span>
+      } else {
+        return <span>{infoCheck.beds}</span>
+      }
+    }
+  }
+
+  getCheckedBaths = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      if (!infoCheck.baths) {
+        return <span>?</span>
+      } else {
+        return <span>{infoCheck.baths}</span>
+      }
+    }
+  }
+
+  getCheckedSQFT = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      if (!infoCheck.sqft) {
+        return <span>?</span>
+      } else {
+        return <span>{infoCheck.sqft}</span>
+      }
+    }
+  }
+
+  getCheckedLisingURL = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return ''
+    } else {
+      return infoCheck.listingUrl
+    }
+  }
+
+  getCheckedDescription = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      return <span>{infoCheck.description}</span>
+    }
+  }
+
+  getCheckedPrice = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return <span>?</span>
+    } else {
+      return <span>{infoCheck.price}</span>
+    }
+  }
+
+  getCheckedImages = () => {
+    let infoCheck: any = this.state.info
+    if (!infoCheck) {
+      return []
+    } else {
+      return infoCheck.images
+    }
+  }
+
+  showPhotoCarousel = () => {
+    const images: string[] = this.getCheckedImages()
+
+    console.log(images.length)
+
+    if (images.length > 1) {
+      return (
+        <Carousel centerSlidePercentage={50} showArrows={true} dynamicHeight={true} centerMode={true}>
+          {images.map(this.showSinglePhoto)}
+        </Carousel>
+      )
+    } else {
+      return <div />
+    }
+  }
+
+  showSinglePhoto = (photo: string, index: number) => {
+    // const divStyle: any = {
+    //   backgroundImage: 'url(' + photo + ')'
+    // }
     return (
-      
-    <div className='listing-content'>
-      <h2 className='section-title'>Address</h2>
-      <ul className='info-tags'>
-        <li>N bedrooms</li>
-        <li>N bathrooms</li>
-        <li>NN SQFT</li>
-        <li>Furnished?</li>
-      </ul>
-      <h2 className='section-title'> Listings details </h2>
-    </div>
+      <div key={index}>
+        <img src={photo}/>
+      </div>
     )
   }
 
@@ -163,20 +327,16 @@ class ListingInfoPage extends React.Component<IListingInfoPageProps, IListingInf
     } else {
       return (
         <div>
-          <div>
-            <h1>photos</h1>
-          </div>
           <div className='container'>
+          <div id='photos-section'>{this.showPhotoCarousel()}</div>
             <div className='row'>
-              <div className='col-md-9'>
-                {this.showContent()}
-              </div>
+              <div className='col-md-9'>{this.showContent()}</div>
               {this.showContactCard()}
             </div>
           </div>
           <Modal show={this.state.modalShow} onHide={this.closeModal}>
-                {this.showModalMessage()}
-              </Modal>
+            {this.showModalMessage()}
+          </Modal>
         </div>
       )
     }

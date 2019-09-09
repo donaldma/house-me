@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiEndpoint = '/api'
+const apiEndpoint = 'https://get-house-me.herokuapp.com/api'
 let API = createAxiosInstance()
 
 function createAxiosInstance() {
