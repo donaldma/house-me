@@ -94,7 +94,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "rimraf": "^2.6.3",
-    "shelljs": "^0.8.1",
+    "shelljs": "^0.8.5",
     "slack-node": "^0.1.8",
     "source-map-support": "^0.5.12",
     "stripe": "^7.2.0",
