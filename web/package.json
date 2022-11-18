@@ -38,7 +38,7 @@
     "react-map-gl": "^5.0.3",
     "react-responsive-carousel": "^3.1.50",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^3.3.1",
+    "react-scripts": "^5.0.1",
     "react-slideshow-image": "^1.2.2",
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^5.2.1",
