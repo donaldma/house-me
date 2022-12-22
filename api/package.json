@@ -73,7 +73,7 @@
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.1",
     "google-geocode-parser": "^1.4.5",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "knex": "^0.16.5",
     "knex-logger": "^0.1.0",
     "lodash": "^4.17.15",
